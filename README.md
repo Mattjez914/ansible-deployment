@@ -5,6 +5,9 @@ Using Ansible to configure and deploy to remote server
 - Install package on all inventory
 ```
    ansible all -m apt -a name=*package-name --become --ask-become-pass
+```
+or
+```
    ansible all -m apt -a "name=*package-name state=latest" --become --ask-become-pass
 ```
 - Upgrade all packages on servers
