@@ -14,7 +14,7 @@ or
 ```
    ansible all -m apt -a "upgrade=dist" --become --ask-become-pass
 ```
-- Run ansible palybook
+- Run ansible playbook
 ```
 ansible-playbook --ask-become-pass *nameoffile*.yml
 ```
