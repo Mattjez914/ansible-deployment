@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: uninstall nginx package
+    apt:
+      name: nginx
+      state: absent
+    when: ansible_distribution == "Ubuntu"
+    

@@ -16,5 +16,17 @@ or
 ```
 - Run ansible playbook
 ```
-ansible-playbook --ask-become-pass *nameoffile*.yml
+   ansible-playbook --ask-become-pass *nameoffile*.yml
+```
+- List playbook tags
+```
+   ansible-playbook --list-tags *nameoffile*.yml
+```
+- Get info from servers
+```
+   ansible all -m gather_facts
+```
+- Ping servers
+```
+   ansible all -m ping
 ```
