@@ -4,11 +4,11 @@
   become: true
   pre_tasks:
 
-  - name: update repo cache
+  - name: install updates
     tags: always
     apt:
+      upgrade: dist
       update_cache: yes
-    changed_when: false
     when: ansible_distribution in ["Debian","Ubuntu"] 
 
 
@@ -16,13 +16,24 @@
   become: true
   tasks:
 
+  - name: create deployer user
+    tags: always
+    user:
+      name: deployer
+      groups: root
+
   - name: add ssh key for deployer
     tags: always
     authorized_key:
       user: deployer
       key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEQDZVNBDq5C+kYuGboRz8crfZPwUsMrzJIp0Sibn1Pg ansible"
 
+  - name: add sudoers file for deployer
+    tags: always
+    copy:
+      src: sudoer_deployer
+      dest: /etc/sudoers.d/deployer
+      onwer: root
+      group: root
+      mode: 0440
 
-- hosts: web_servers
-  become: true
-  tasks:
