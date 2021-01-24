@@ -11,18 +11,12 @@
     changed_when: false
     when: ansible_distribution in ["Debian","Ubuntu"] 
 
-
 - hosts: all
   become: true
-  tasks:
-
-  - name: add ssh key for deployer
-    tags: always
-    authorized_key:
-      user: deployer
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEQDZVNBDq5C+kYuGboRz8crfZPwUsMrzJIp0Sibn1Pg ansible"
-
-
+  roles:
+    - base
+    
 - hosts: web_servers
   become: true
-  tasks:
+  roles:
+    - web_servers
