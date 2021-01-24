@@ -27,7 +27,7 @@
     dest: /etc/nginx/sites-available/test
   when: ansible_distribution in ["Debian","Ubuntu"]
   notify:
-   - Restart nginx
+   - restart_nginx
 
 - name: enable website
   tags: nginx,ubuntu
@@ -37,5 +37,5 @@
     state: link
   when: ansible_distribution in ["Debian","Ubuntu"]
   notify:
-   - Restart nginx
+   - restart_nginx
 
