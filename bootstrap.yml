@@ -33,7 +33,7 @@
     copy:
       src: sudoer_deployer
       dest: /etc/sudoers.d/deployer
-      onwer: root
+      owner: root
       group: root
       mode: 0440
 

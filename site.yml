@@ -20,3 +20,13 @@
   become: true
   roles:
     - web_servers
+
+- hosts: frontend_servers
+  become: true
+  roles:
+    - frontend_servers
+
+- hosts: api_servers
+  become: true
+  roles:
+    - api_servers

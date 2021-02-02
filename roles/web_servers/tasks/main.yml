@@ -5,7 +5,6 @@
       - "{{ nginx_package_name }}"
     state: latest
 
-
 - name: start and enable nginx
   tags: nginx
   service:
@@ -13,29 +12,8 @@
     state: started
     enabled: yes
 
-- name: disable nginx default website
-  tags: nginx,ubuntu
-  file:
-    path: /etc/nginx/sites-enabled/default
-    state: absent
-  when: ansible_distribution in ["Debian","Ubuntu"]
-
-- name: deploy web config file
-  tags: nginx,ubuntu
-  template:
-    src: templates/nginxSetup
-    dest: /etc/nginx/sites-available/test
-  when: ansible_distribution in ["Debian","Ubuntu"]
-  notify:
-   - restart_nginx
-
-- name: enable website
-  tags: nginx,ubuntu
-  file:
-    src: /etc/nginx/sites-available/test
-    dest: /etc/nginx/sites-enabled/test
-    state: link
-  when: ansible_distribution in ["Debian","Ubuntu"]
-  notify:
-   - restart_nginx
-
+- name: allow Nginx Full through firewall
+  tags: nginx
+  ufw:
+    rule: allow
+    name: Nginx Full

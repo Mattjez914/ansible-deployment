@@ -1,0 +1,29 @@
+- name: copy react build to var directory
+  tags: react
+  copy:
+    src: "{{ build_path }}"
+    dest: "/var/www/{{ domain_name }}/html"
+
+- name: disable nginx default website
+  tags: nginx,ubuntu
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: deploy web config file
+  tags: nginx,ubuntu
+  template:
+    src: templates/nginx_config.j2
+    dest: "/etc/nginx/sites-available/{{ domain_name }}"
+  notify:
+    - restart_nginx
+
+- name: enable website
+  tags: nginx,ubuntu
+  file:
+    src: "/etc/nginx/sites-available/{{ domain_name }}"
+    dest: "/etc/nginx/sites-enabled/{{ domain_name }}"
+    state: link
+  notify:
+    - restart_nginx
+

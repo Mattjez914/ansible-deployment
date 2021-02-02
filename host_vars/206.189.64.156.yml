@@ -2,3 +2,6 @@ nginx_package_name: nginx
 nginx_service: nginx
 ssh_users: "mattjez914 deployer"
 ssh_template_file: sshd_config_ubuntu.j2
+domain_name: alphanetrics.com
+build_path: ~/repositories/oauth-oidc-server/sample-app/build/
+certbot_admin_email: mattjezstockton@gmail.com

@@ -1,2 +1,8 @@
 [web_servers]
 206.189.64.156
+
+[frontend_servers]
+206.189.64.156
+
+[api_servers]
+206.189.64.156
